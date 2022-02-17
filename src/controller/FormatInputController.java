@@ -10,6 +10,12 @@ import log.Log;
 import output.Output;
 import output.OutputInterface;
 
+/**
+ * Controlling the flow of tasks.
+ * @author ThinkPad
+ *
+ */
+
 public class FormatInputController {
 
 	private Log log;

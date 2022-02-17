@@ -6,6 +6,9 @@ public class Device2 extends Device{
 		super(code, name, owner, inputDate, warrantyYear);
 	}
 	
+	/**
+	 * Slightly improve run time.
+	 */
 	@Override
 	public void standardizedOwner() {
 		owner = owner.trim();

@@ -8,6 +8,12 @@ import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Fake data needed to run
+ * @author ThinkPad
+ *
+ */
+
 public class FakeInputData {
 
 	static final String AB = "        ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -36,7 +42,10 @@ public class FakeInputData {
 		}
 
 	}
-
+	
+	/**
+	 * Add a new line to input file.
+	 */
 	public void appendLine() {
 		try {
 			String newline = randomCodeAndName()+ "," + randomOwner() + "," + randomDate() + "," + randomWarrantyYear();
@@ -102,7 +111,7 @@ public class FakeInputData {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FakeInputData faker = new FakeInputData("Input/input1.txt");
-		for (int i=0; i<30000000; i++)
+		for (int i=0; i<100; i++)
 			faker.appendLine();
 		faker.close();
 		System.out.print("Done");
