@@ -1,6 +1,6 @@
 package input;
 
-import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import device.DeviceInterface;
 
@@ -10,5 +10,5 @@ import device.DeviceInterface;
  *
  */
 public interface InputInterface {
-	public List<DeviceInterface> readAll();
+	public ConcurrentSkipListSet<DeviceInterface> readAll();
 }

@@ -1,7 +1,7 @@
 package controller;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import device.DeviceInterface;
 import input.Input;
@@ -23,18 +23,12 @@ public class FormatInputController {
 	private Timestamp stopTime;
 	private InputInterface input;
 	private OutputInterface output;
-	private List<DeviceInterface> deviceList;
+	private ConcurrentSkipListSet<DeviceInterface> deviceList;
 	
 	public FormatInputController(String inputFilename, String outputFilename) {
-		startTime = new Timestamp(System.currentTimeMillis());
 		log = new Log();		
 		input = new Input(inputFilename);
 		output = new Output(outputFilename);
-		log.info("Reading input file");
-		deviceList = input.readAll();
-		stopTime = new Timestamp(System.currentTimeMillis());
-		float runtime = ((float)(stopTime.getTime()-startTime.getTime())/1000);
-		log.info("Finished reading input file, took " + runtime + "s");
 	}
 	
 	public void start() {
@@ -72,8 +66,16 @@ public class FormatInputController {
 	
 	public void task1() {
 		startTask1();	
-		log.info("Sorting device list");
-		deviceList.sort((device1, device2) -> device1.compareTo(device2));
+		// Reading input
+		log.info("Reading input file");
+		deviceList = input.readAll();
+		stopTime = new Timestamp(System.currentTimeMillis());
+		float runtime = ((float)(stopTime.getTime()-startTime.getTime())/1000);
+		log.info("Finished reading input file, took " + runtime + "s");
+		
+		// Sorting devices
+//		log.info("Sorting device list");
+//		deviceList.sort((device1, device2) -> device1.compareTo(device2));
 		log.info("Printing to file task1");
 		output.printTask1(deviceList);
 		endTask1();

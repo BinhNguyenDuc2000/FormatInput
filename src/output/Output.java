@@ -4,8 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import device.DeviceInterface;
 
@@ -23,7 +22,7 @@ public class Output implements OutputInterface {
 	}
 
 	@Override
-	public void printTask1(List<DeviceInterface> deviceList) {
+	public void printTask1(ConcurrentSkipListSet<DeviceInterface> deviceList) {
 		try {
 			Iterator<DeviceInterface> deviceIterator = deviceList.iterator();
 			while (deviceIterator.hasNext()) {
@@ -40,13 +39,12 @@ public class Output implements OutputInterface {
 	}
 
 	@Override
-	public void printTask2(List<DeviceInterface> deviceList) {
+	public void printTask2(ConcurrentSkipListSet<DeviceInterface> deviceList) {
 		try {
-			ListIterator<DeviceInterface> deviceIterator = deviceList.listIterator(deviceList.size());
-			while (deviceIterator.hasPrevious()) {
-				DeviceInterface device = deviceIterator.previous();
-				device.standardizedOwner();
-				writer.write(device.toString());
+			Iterator<DeviceInterface> deviceIterator = deviceList.descendingIterator();
+			while (deviceIterator.hasNext()) {
+				DeviceInterface device = deviceIterator.next();
+				writer.write(device.toStandardizedString());
 				writer.newLine();
 			}
 			writer.write("###");

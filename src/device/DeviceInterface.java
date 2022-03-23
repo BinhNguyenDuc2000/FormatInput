@@ -13,4 +13,7 @@ public interface DeviceInterface {
 	
 	public int compareTo(DeviceInterface a2);
 	public int getWarrantyYear();
+	public String getCode();
+	
+	public String toStandardizedString();
 }
