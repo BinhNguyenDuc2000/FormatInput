@@ -1,0 +1,10 @@
+Mar 23, 2022 10:36:37 AM log.Log info
+INFO: Reading input file
+Mar 23, 2022 10:36:37 AM log.Log startLogger
+INFO: Starting
+Mar 23, 2022 10:36:37 AM log.Log info
+INFO: Starting task 1
+Mar 23, 2022 10:36:51 AM log.Log info
+INFO: Finished reading input file, took 13.589s
+Mar 23, 2022 10:36:51 AM log.Log endLogger
+INFO: Stopping

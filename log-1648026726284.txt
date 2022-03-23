@@ -1,0 +1,24 @@
+Mar 23, 2022 4:12:06 PM log.Log startLogger
+INFO: Starting
+Mar 23, 2022 4:12:06 PM log.Log info
+INFO: Starting task 1
+Mar 23, 2022 4:12:06 PM log.Log info
+INFO: Reading input file
+Mar 23, 2022 4:13:26 PM log.Log info
+INFO: Finished reading input file, took 78.687s
+Mar 23, 2022 4:13:26 PM log.Log info
+INFO: Printing to file task1
+Mar 23, 2022 4:13:44 PM log.Log info
+INFO: Ending task 1
+Mar 23, 2022 4:13:44 PM log.Log info
+INFO: Task 1 took 97.942s
+Mar 23, 2022 4:13:44 PM log.Log info
+INFO: Starting task 2
+Mar 23, 2022 4:13:44 PM log.Log info
+INFO: Printing to file task2
+Mar 23, 2022 4:14:01 PM log.Log info
+INFO: Ending task 2
+Mar 23, 2022 4:14:01 PM log.Log info
+INFO: Task 2 took 17.175s
+Mar 23, 2022 4:14:01 PM log.Log endLogger
+INFO: Stopping

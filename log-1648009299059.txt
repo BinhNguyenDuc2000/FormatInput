@@ -1,0 +1,6 @@
+Mar 23, 2022 11:21:39 AM log.Log startLogger
+INFO: Starting
+Mar 23, 2022 11:21:39 AM log.Log info
+INFO: Starting task 1
+Mar 23, 2022 11:21:39 AM log.Log info
+INFO: Reading input file
