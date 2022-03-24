@@ -31,17 +31,27 @@ public class Device implements DeviceInterface{
 		return warrantyYear-device.getWarrantyYear();
 	}
 
+	/**
+	 * Slightly improve run time.
+	 */
 	@Override
 	public void standardizedOwner() {
 		owner = owner.trim();
-		owner = owner.replaceAll("\\s+", " ");
-		String temp[] = owner.split(" ");
-        owner = ""; 
-        for (int i = 0; i < temp.length; i++) {
-            owner += String.valueOf(temp[i].charAt(0)).toUpperCase() + temp[i].substring(1).toLowerCase();
-            if (i < temp.length - 1)
-                owner += " ";
-        }
 
+		StringBuilder temp = new StringBuilder(String.valueOf(Character.toUpperCase(owner.charAt(0))));
+		for (int i=1; i < owner.length(); i++) {
+			if (owner.charAt(i-1) == ' ') {
+				if (Character.isAlphabetic(owner.charAt(i)))
+					temp.append(Character.toUpperCase(owner.charAt(i)));
+			}
+			else {
+				if (Character.isAlphabetic(owner.charAt(i)))
+					temp.append(Character.toLowerCase(owner.charAt(i)));
+				else {
+					temp.append(' ');
+				}
+			}
+		}
+		owner = temp.toString();
 	}
 }

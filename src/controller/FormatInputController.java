@@ -9,6 +9,7 @@ import input.InputInterface;
 import log.Log;
 import output.Output;
 import output.OutputInterface;
+import javax.swing.JOptionPane;
 
 /**
  * Controlling the flow of tasks.
@@ -30,15 +31,14 @@ public class FormatInputController {
 		log = new Log();		
 		input = new Input(inputFilename);
 		output = new Output(outputFilename);
-		log.info("Reading input file");
-		deviceList = input.readAll();
-		stopTime = new Timestamp(System.currentTimeMillis());
-		float runtime = ((float)(stopTime.getTime()-startTime.getTime())/1000);
-		log.info("Finished reading input file, took " + runtime + "s");
+		
 	}
 	
 	public void start() {
 		log.startLogger();
+		log.info("Size of input:" + JOptionPane.showInputDialog("Input size:"));
+		String message = JOptionPane.showInputDialog("Log notes:");
+		log.info(message);
 	}
 	
 	public void end() {
@@ -72,6 +72,14 @@ public class FormatInputController {
 	
 	public void task1() {
 		startTask1();	
+		// Reading input file
+		log.info("Reading input file");
+		deviceList = input.readAll();
+		stopTime = new Timestamp(System.currentTimeMillis());
+		float runtime = ((float)(stopTime.getTime()-startTime.getTime())/1000);
+		log.info("Finished reading input file, took " + runtime + "s");
+		
+		// Sorting device list
 		log.info("Sorting device list");
 		deviceList.sort((device1, device2) -> device1.compareTo(device2));
 		log.info("Printing to file task1");
