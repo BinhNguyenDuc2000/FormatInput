@@ -23,7 +23,7 @@ public class Device implements DeviceInterface{
 	
 	@Override
 	public String toString() {
-		return code + "," + name + "," + owner + "," + inputDate + "," + String.valueOf(warrantyYear);
+		return code + "," + name + "," + owner + "," + inputDate + "," + String.valueOf(warrantyYear) + '\n';
 	}
 
 	@Override

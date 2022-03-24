@@ -28,10 +28,8 @@ public class Output implements OutputInterface {
 			Iterator<DeviceInterface> deviceIterator = deviceList.iterator();
 			while (deviceIterator.hasNext()) {
 				writer.write(deviceIterator.next().toString());
-				writer.newLine();
 			}
-			writer.write("###");
-			writer.newLine();
+			writer.write("###\n");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -47,10 +45,8 @@ public class Output implements OutputInterface {
 				DeviceInterface device = deviceIterator.previous();
 				device.standardizedOwner();
 				writer.write(device.toString());
-				writer.newLine();
 			}
-			writer.write("###");
-			writer.newLine();
+			writer.write("###\n");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);

@@ -1,0 +1,30 @@
+Mar 24, 2022 10:31:48 AM log.Log startLogger
+INFO: Starting
+Mar 24, 2022 10:31:56 AM log.Log info
+INFO: Size of input:15000000
+Mar 24, 2022 10:32:13 AM log.Log info
+INFO: Using string builder to form record string
+Mar 24, 2022 10:32:13 AM log.Log info
+INFO: Starting task 1
+Mar 24, 2022 10:32:13 AM log.Log info
+INFO: Reading input file
+Mar 24, 2022 10:32:25 AM log.Log info
+INFO: Finished reading input file, took 12.353s
+Mar 24, 2022 10:32:25 AM log.Log info
+INFO: Sorting device list
+Mar 24, 2022 10:32:31 AM log.Log info
+INFO: Printing to file task1
+Mar 24, 2022 10:32:50 AM log.Log info
+INFO: Ending task 1
+Mar 24, 2022 10:32:50 AM log.Log info
+INFO: Task 1 took 36.642s
+Mar 24, 2022 10:32:50 AM log.Log info
+INFO: Starting task 2
+Mar 24, 2022 10:32:50 AM log.Log info
+INFO: Printing to file task2
+Mar 24, 2022 10:33:34 AM log.Log info
+INFO: Ending task 2
+Mar 24, 2022 10:33:34 AM log.Log info
+INFO: Task 2 took 43.979s
+Mar 24, 2022 10:33:34 AM log.Log endLogger
+INFO: Stopping
