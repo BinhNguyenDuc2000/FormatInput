@@ -3,13 +3,14 @@ package controller;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import device.DeviceInterface;
 import input.Input;
 import input.InputInterface;
 import log.Log;
 import output.Output;
 import output.OutputInterface;
-import javax.swing.JOptionPane;
 
 /**
  * Controlling the flow of tasks.
@@ -101,6 +102,7 @@ public class FormatInputController {
 			controller.task1();
 			controller.task2();
 			controller.end();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

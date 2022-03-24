@@ -1,0 +1,14 @@
+Mar 24, 2022 11:11:52 AM log.Log startLogger
+INFO: Starting
+Mar 24, 2022 11:11:59 AM log.Log info
+INFO: Size of input:500000000
+Mar 24, 2022 11:12:03 AM log.Log info
+INFO: Using string concat
+Mar 24, 2022 11:12:03 AM log.Log info
+INFO: Starting testing
+Mar 24, 2022 11:12:56 AM log.Log info
+INFO: Ending testing
+Mar 24, 2022 11:12:56 AM log.Log info
+INFO: Testing 2 took 52.838s
+Mar 24, 2022 11:12:56 AM log.Log endLogger
+INFO: Stopping

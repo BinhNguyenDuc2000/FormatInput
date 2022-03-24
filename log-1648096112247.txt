@@ -1,0 +1,14 @@
+Mar 24, 2022 11:28:32 AM log.Log startLogger
+INFO: Starting
+Mar 24, 2022 11:28:41 AM log.Log info
+INFO: Size of input:500000000
+Mar 24, 2022 11:28:48 AM log.Log info
+INFO: Using string builder
+Mar 24, 2022 11:28:48 AM log.Log info
+INFO: Starting testing
+Mar 24, 2022 11:29:43 AM log.Log info
+INFO: Ending testing
+Mar 24, 2022 11:29:43 AM log.Log info
+INFO: Testing 2 took 55.955s
+Mar 24, 2022 11:29:43 AM log.Log endLogger
+INFO: Stopping
