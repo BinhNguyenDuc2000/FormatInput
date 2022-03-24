@@ -1,0 +1,30 @@
+Mar 24, 2022 3:47:25 PM log.Log startLogger
+INFO: Starting
+Mar 24, 2022 3:49:10 PM log.Log info
+INFO: Size of input:10000000
+Mar 24, 2022 3:49:21 PM log.Log info
+INFO: Using threaded Input with 2 threads
+Mar 24, 2022 3:49:21 PM log.Log info
+INFO: Starting task 1
+Mar 24, 2022 3:49:21 PM log.Log info
+INFO: Reading input file
+Mar 24, 2022 3:49:35 PM log.Log info
+INFO: Finished reading input file, took 13.69s
+Mar 24, 2022 3:49:35 PM log.Log info
+INFO: Sorting device list
+Mar 24, 2022 3:49:38 PM log.Log info
+INFO: Printing to file task1
+Mar 24, 2022 3:49:47 PM log.Log info
+INFO: Ending task 1
+Mar 24, 2022 3:49:47 PM log.Log info
+INFO: Task 1 took 25.704s
+Mar 24, 2022 3:49:47 PM log.Log info
+INFO: Starting task 2
+Mar 24, 2022 3:49:47 PM log.Log info
+INFO: Printing to file task2
+Mar 24, 2022 3:50:07 PM log.Log info
+INFO: Ending task 2
+Mar 24, 2022 3:50:07 PM log.Log info
+INFO: Task 2 took 20.438s
+Mar 24, 2022 3:50:07 PM log.Log endLogger
+INFO: Stopping
