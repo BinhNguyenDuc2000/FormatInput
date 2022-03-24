@@ -111,7 +111,7 @@ public class FakeInputData {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		FakeInputData faker = new FakeInputData("Input/input1.txt");
-		for (int i=0; i<15; i++)
+		for (int i=0; i<100; i++)
 			faker.appendLine();
 		faker.close();
 		System.out.print("Done");

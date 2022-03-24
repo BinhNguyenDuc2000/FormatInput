@@ -28,18 +28,19 @@ public class FormatInputController {
 	private List<DeviceInterface> deviceList;
 	
 	public FormatInputController(String inputFilename, String outputFilename) {
-		startTime = new Timestamp(System.currentTimeMillis());
 		log = new Log();		
-		input = new Input(inputFilename);
+		input = new Input(inputFilename, start());
 		output = new Output(outputFilename);
 		
 	}
 	
-	public void start() {
+	public int start() {
 		log.startLogger();
-		log.info("Size of input:" + JOptionPane.showInputDialog("Input size:"));
+		int inputSize = Integer.valueOf(JOptionPane.showInputDialog("Input size:"));
+		log.info("Size of input:" + String.valueOf(inputSize));
 		String message = JOptionPane.showInputDialog("Log notes:");
 		log.info(message);
+		return inputSize;
 	}
 	
 	public void end() {
@@ -98,7 +99,6 @@ public class FormatInputController {
 	public static void main(String[] args) {
 		try {
 			FormatInputController controller = new FormatInputController("Input/input1.txt", "Output/output1.txt");
-			controller.start();
 			controller.task1();
 			controller.task2();
 			controller.end();

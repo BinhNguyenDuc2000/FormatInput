@@ -22,10 +22,15 @@ public class Device implements DeviceInterface{
 	}
 	
 	@Override
+	public String getCode() {
+		return code;
+	}
+	
+	@Override
 	public String toString() {
 		return code + "," + name + "," + owner + "," + inputDate + "," + String.valueOf(warrantyYear) + '\n';
 	}
-
+	
 	@Override
 	public int compareTo(DeviceInterface device) {
 		return warrantyYear-device.getWarrantyYear();
