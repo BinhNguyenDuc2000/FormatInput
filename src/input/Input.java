@@ -1,7 +1,7 @@
 package input;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
+import java.io.RandomAccessFile;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,17 @@ import device.DeviceInterface;
 
 public class Input implements InputInterface {
 	private String filename;
-	private int numberOfLinesPerThread; 
-	private static final int numberOfThreads = 4;
+	private long numberOfCharsPerThread;
+	public static final int numberOfThreads = 4;
+	private static final int sizeOfChar = 1;
+	private static final int numberOfSplits = 50;
 
-	public Input(String filename, int numberOfLines) {
+	public Input(String filename) {
 		try {
-			numberOfLinesPerThread = numberOfLines/numberOfThreads;
+			File file = new File(filename);
+			numberOfCharsPerThread = file.length() / (numberOfThreads * sizeOfChar * numberOfSplits);
 			this.filename = filename;
-			
+
 		} catch (Exception e) {
 			System.out.println(Paths.get(this.filename).toAbsolutePath());
 			e.printStackTrace();
@@ -32,16 +35,24 @@ public class Input implements InputInterface {
 	public List<DeviceInterface> readAll() {
 		try {
 			ConcurrentHashMap<String, DeviceInterface> deviceList = new ConcurrentHashMap<>();
-			ExecutorService es = Executors.newCachedThreadPool();
+			ExecutorService es;
+			ArrayList<RandomAccessFile> rafList = new ArrayList<>();
+			for (int i = 0; i < numberOfThreads; i++) {
+				rafList.add(new RandomAccessFile(filename, "r"));
+			}
+			es = Executors.newCachedThreadPool();
 
-			for (int i=0; i < numberOfThreads;i++) {
-				BufferedReader reader = new BufferedReader(new FileReader(this.filename), 16384);
-				InputThread inputThread = new InputThread(reader, deviceList, numberOfLinesPerThread, i);
+			for (int i = 0; i < numberOfThreads; i++) {
+
+				InputThread inputThread = new InputThread(rafList.get(i), deviceList, numberOfCharsPerThread, i, numberOfCharsPerThread * numberOfThreads * sizeOfChar * numberOfSplits);
 				es.execute(inputThread);
 			}
 			es.shutdown();
-			while(!es.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES));
-			
+			while (!es.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES))
+				;
+			for (int i = 0; i < numberOfThreads; i++) {
+				rafList.get(i).close();
+			}
 			return new ArrayList<DeviceInterface>(deviceList.values());
 		} catch (Exception e) {
 			e.printStackTrace();

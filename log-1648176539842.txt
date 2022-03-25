@@ -1,0 +1,10 @@
+Mar 25, 2022 9:48:59 AM log.Log startLogger
+INFO: Starting
+Mar 25, 2022 9:49:05 AM log.Log info
+INFO: Size of input:10000000
+Mar 25, 2022 9:49:08 AM log.Log info
+INFO: Using RAF
+Mar 25, 2022 9:49:08 AM log.Log info
+INFO: Starting task 1
+Mar 25, 2022 9:49:08 AM log.Log info
+INFO: Reading input file

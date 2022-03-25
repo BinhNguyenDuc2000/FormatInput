@@ -1,0 +1,30 @@
+Mar 25, 2022 11:04:59 AM log.Log startLogger
+INFO: Starting
+Mar 25, 2022 11:05:06 AM log.Log info
+INFO: Size of input:10000000
+Mar 25, 2022 11:05:15 AM log.Log info
+INFO: Using RAF with 10 threads and lock 4
+Mar 25, 2022 11:05:15 AM log.Log info
+INFO: Starting task 1
+Mar 25, 2022 11:05:15 AM log.Log info
+INFO: Reading input file
+Mar 25, 2022 11:06:01 AM log.Log info
+INFO: Finished reading input file, took 46.256s
+Mar 25, 2022 11:06:01 AM log.Log info
+INFO: Sorting device list
+Mar 25, 2022 11:06:05 AM log.Log info
+INFO: Printing to file task1
+Mar 25, 2022 11:06:13 AM log.Log info
+INFO: Ending task 1
+Mar 25, 2022 11:06:13 AM log.Log info
+INFO: Task 1 took 58.272s
+Mar 25, 2022 11:06:13 AM log.Log info
+INFO: Starting task 2
+Mar 25, 2022 11:06:13 AM log.Log info
+INFO: Printing to file task2
+Mar 25, 2022 11:06:32 AM log.Log info
+INFO: Ending task 2
+Mar 25, 2022 11:06:32 AM log.Log info
+INFO: Task 2 took 18.808s
+Mar 25, 2022 11:06:32 AM log.Log endLogger
+INFO: Stopping

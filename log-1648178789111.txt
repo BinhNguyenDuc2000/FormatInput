@@ -1,0 +1,30 @@
+Mar 25, 2022 10:26:29 AM log.Log startLogger
+INFO: Starting
+Mar 25, 2022 10:26:35 AM log.Log info
+INFO: Size of input:10000000
+Mar 25, 2022 10:26:52 AM log.Log info
+INFO: Using Semaphore Lock with increased Threads
+Mar 25, 2022 10:26:52 AM log.Log info
+INFO: Starting task 1
+Mar 25, 2022 10:26:52 AM log.Log info
+INFO: Reading input file
+Mar 25, 2022 10:27:35 AM log.Log info
+INFO: Finished reading input file, took 42.625s
+Mar 25, 2022 10:27:35 AM log.Log info
+INFO: Sorting device list
+Mar 25, 2022 10:27:40 AM log.Log info
+INFO: Printing to file task1
+Mar 25, 2022 10:27:48 AM log.Log info
+INFO: Ending task 1
+Mar 25, 2022 10:27:48 AM log.Log info
+INFO: Task 1 took 55.87s
+Mar 25, 2022 10:27:48 AM log.Log info
+INFO: Starting task 2
+Mar 25, 2022 10:27:48 AM log.Log info
+INFO: Printing to file task2
+Mar 25, 2022 10:28:06 AM log.Log info
+INFO: Ending task 2
+Mar 25, 2022 10:28:06 AM log.Log info
+INFO: Task 2 took 18.077s
+Mar 25, 2022 10:28:06 AM log.Log endLogger
+INFO: Stopping

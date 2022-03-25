@@ -1,0 +1,30 @@
+Mar 25, 2022 10:11:44 AM log.Log startLogger
+INFO: Starting
+Mar 25, 2022 10:11:50 AM log.Log info
+INFO: Size of input:10000000
+Mar 25, 2022 10:11:58 AM log.Log info
+INFO: Using RAF under BufferedReader
+Mar 25, 2022 10:11:58 AM log.Log info
+INFO: Starting task 1
+Mar 25, 2022 10:11:58 AM log.Log info
+INFO: Reading input file
+Mar 25, 2022 10:12:31 AM log.Log info
+INFO: Finished reading input file, took 32.578s
+Mar 25, 2022 10:12:31 AM log.Log info
+INFO: Sorting device list
+Mar 25, 2022 10:12:33 AM log.Log info
+INFO: Printing to file task1
+Mar 25, 2022 10:13:12 AM log.Log info
+INFO: Ending task 1
+Mar 25, 2022 10:13:12 AM log.Log info
+INFO: Task 1 took 73.579s
+Mar 25, 2022 10:13:12 AM log.Log info
+INFO: Starting task 2
+Mar 25, 2022 10:13:12 AM log.Log info
+INFO: Printing to file task2
+Mar 25, 2022 10:13:41 AM log.Log info
+INFO: Ending task 2
+Mar 25, 2022 10:13:41 AM log.Log info
+INFO: Task 2 took 29.046s
+Mar 25, 2022 10:13:41 AM log.Log endLogger
+INFO: Stopping

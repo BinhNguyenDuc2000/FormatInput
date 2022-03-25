@@ -1,0 +1,30 @@
+Mar 25, 2022 1:57:16 PM log.Log startLogger
+INFO: Starting
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Size of input:
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: 
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Starting task 1
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Reading input file
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Finished reading input file, took 0.029s
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Sorting device list
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Printing to file task1
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Ending task 1
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Task 1 took 0.043s
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Starting task 2
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Printing to file task2
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Ending task 2
+Mar 25, 2022 1:57:17 PM log.Log info
+INFO: Task 2 took 0.018s
+Mar 25, 2022 1:57:17 PM log.Log endLogger
+INFO: Stopping
