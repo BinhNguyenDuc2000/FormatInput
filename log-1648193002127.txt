@@ -1,2 +1,0 @@
-Mar 25, 2022 2:23:31 PM log.Log startLogger
-INFO: Starting
