@@ -1,0 +1,46 @@
+Mar 27, 2022 10:32:03 PM log.Log info
+INFO: Starting task Initializing input(Getting file length)
+Mar 27, 2022 10:32:03 PM log.Log info
+INFO: Ending task Initializing input(Getting file length)
+Mar 27, 2022 10:32:03 PM log.Log info
+INFO: Task Initializing input(Getting file length) took 0.085s
+Mar 27, 2022 10:32:03 PM log.Log info
+INFO: Starting task Initializing output
+Mar 27, 2022 10:32:03 PM log.Log info
+INFO: Ending task Initializing output
+Mar 27, 2022 10:32:03 PM log.Log info
+INFO: Task Initializing output took 0.004s
+Mar 27, 2022 10:32:03 PM log.Log startLogger
+INFO: Starting
+Mar 27, 2022 10:32:08 PM log.Log info
+INFO: Size of input:30000000
+Mar 27, 2022 10:32:11 PM log.Log info
+INFO: 
+Mar 27, 2022 10:32:11 PM log.Log info
+INFO: Starting task Reading input file
+Mar 27, 2022 10:32:45 PM log.Log info
+INFO: Ending task Reading input file
+Mar 27, 2022 10:32:45 PM log.Log info
+INFO: Task Reading input file took 34.781s
+Mar 27, 2022 10:32:45 PM log.Log info
+INFO: Starting task Sorting device list
+Mar 27, 2022 10:32:45 PM log.Log info
+INFO: Sorting device list
+Mar 27, 2022 10:32:57 PM log.Log info
+INFO: Ending task Sorting device list
+Mar 27, 2022 10:32:57 PM log.Log info
+INFO: Task Sorting device list took 11.819s
+Mar 27, 2022 10:32:57 PM log.Log info
+INFO: Starting task Printing task 1
+Mar 27, 2022 10:33:33 PM log.Log info
+INFO: Ending task Printing task 1
+Mar 27, 2022 10:33:33 PM log.Log info
+INFO: Task Printing task 1 took 36.069s
+Mar 27, 2022 10:33:33 PM log.Log info
+INFO: Starting task Printing to file task2
+Mar 27, 2022 10:34:21 PM log.Log info
+INFO: Ending task Printing to file task2
+Mar 27, 2022 10:34:21 PM log.Log info
+INFO: Task Printing to file task2 took 48.195s
+Mar 27, 2022 10:34:21 PM log.Log endLogger
+INFO: Stopping

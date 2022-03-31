@@ -33,7 +33,11 @@ public class Device implements DeviceInterface{
 	
 	@Override
 	public int compareTo(DeviceInterface device) {
-		return warrantyYear-device.getWarrantyYear();
+		int warrantyYearDifference = warrantyYear-device.getWarrantyYear();
+		if (warrantyYearDifference != 0)
+			return warrantyYearDifference;
+		
+		return code.compareTo(device.getCode());
 	}
 
 	/**

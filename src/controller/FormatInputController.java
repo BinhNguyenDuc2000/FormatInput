@@ -1,7 +1,10 @@
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JOptionPane;
 
@@ -9,8 +12,10 @@ import device.DeviceInterface;
 import input.Input;
 import input.InputInterface;
 import log.Log;
-import output.Output;
-import output.OutputInterface;
+import output.Output1;
+import output.Output1Interface;
+import output.Output2;
+import output.Output2Interface;
 
 /**
  * Controlling the flow of tasks.
@@ -24,17 +29,22 @@ public class FormatInputController {
 	private Timestamp startTime;
 	private Timestamp stopTime;
 	private InputInterface input;
-	private OutputInterface output;
-	private List<DeviceInterface> deviceList;
+	private BufferedWriter writer;
+	private Output1Interface output1;
+	private Output2Interface output2;
+	private ConcurrentSkipListSet<DeviceInterface> deviceList;
 	
-	public FormatInputController(String inputFilename, String outputFilename) {
+	public FormatInputController(String inputFilename, String outputFileName) {
 		log = new Log();
 		startTask("Initializing input(Getting file length)");
 		input = new Input(inputFilename);
 		endTask("Initializing input(Getting file length)");
-		startTask("Initializing output");
-		output = new Output(outputFilename);
-		endTask("Initializing output");
+		try {
+			this.writer = new BufferedWriter(new FileWriter(outputFileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 		
 	}
 	
@@ -47,7 +57,12 @@ public class FormatInputController {
 	
 	public void end() {
 		log.endLogger();
-		output.close();
+		try {
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 	
 	public void startTask(String message) {
@@ -71,20 +86,22 @@ public class FormatInputController {
 		endTask("Reading input file");
 		
 		// Sorting device list
-		startTask("Sorting device list");
-		log.info("Sorting device list");
-		deviceList.sort((device1, device2) -> device1.compareTo(device2));
-		endTask("Sorting device list");
+//		startTask("Sorting device list");
+//		log.info("Sorting device list");
+//		deviceList.sort((device1, device2) -> device1.compareTo(device2));
+//		endTask("Sorting device list");
 		
 		startTask("Printing task 1");
-		output.printTask1(deviceList);
+		output1 = new Output1(writer);
+		output1.printTask1(deviceList);
 		endTask("Printing task 1");
 	}
 	
 	public void task2() {
 		
 		startTask("Printing to file task2");
-		output.printTask2(deviceList);
+		output2 = new Output2(writer);
+		output2.printTask2(deviceList);
 		endTask("Printing to file task2");
 	}
 

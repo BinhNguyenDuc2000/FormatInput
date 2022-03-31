@@ -3,8 +3,7 @@ package input;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.RandomAccessFile;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import device.DeviceInterface;
 import input.parser.ParserInterface;
@@ -12,8 +11,7 @@ import input.parser.ParserInterface;
 public class InputThread implements Runnable {
 
 	private RandomAccessFile reader;
-	private ConcurrentHashMap<String, DeviceInterface> concurrentHashMap;
-
+	private ConcurrentSkipListSet<DeviceInterface> deviceListSet;
 	private long numberOfCharsPerThread;
 	private int numberOfThread;
 	private int numberOfSplits;
@@ -23,10 +21,10 @@ public class InputThread implements Runnable {
 
 	private String line;
 
-	public InputThread(RandomAccessFile reader, ConcurrentHashMap<String, DeviceInterface> concurrentHashMap,
+	public InputThread(RandomAccessFile reader, ConcurrentSkipListSet<DeviceInterface> deviceListSet,
 			long numberOfCharsPerThread, int numberOfThread, long length) {
 		this.reader = reader;
-		this.concurrentHashMap = concurrentHashMap;
+		this.deviceListSet = deviceListSet;
 		this.numberOfCharsPerThread = numberOfCharsPerThread;
 		this.numberOfThread = numberOfThread;
 		this.length = length;
@@ -65,7 +63,7 @@ public class InputThread implements Runnable {
 
 					i += line.length();
 					DeviceInterface device = ParserInterface.parseString(line);
-					concurrentHashMap.put(device.getCode(), device);
+					deviceListSet.add(device);
 				}
 			}
 		} catch (Exception e) {

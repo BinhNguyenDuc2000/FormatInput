@@ -4,8 +4,7 @@ import java.io.File;
 import java.io.RandomAccessFile;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +16,7 @@ public class Input implements InputInterface {
 	private long numberOfCharsPerThread;
 	public static final int numberOfThreads = 4;
 	private static final int sizeOfChar = 1;
-	private static final int numberOfSplits = 50;
+	private static final int numberOfSplits = 1;
 
 	public Input(String filename) {
 		try {
@@ -32,9 +31,9 @@ public class Input implements InputInterface {
 		}
 	}
 
-	public List<DeviceInterface> readAll() {
+	public ConcurrentSkipListSet<DeviceInterface> readAll() {
 		try {
-			ConcurrentHashMap<String, DeviceInterface> deviceList = new ConcurrentHashMap<>();
+			ConcurrentSkipListSet<DeviceInterface> deviceList = new ConcurrentSkipListSet<>((device1, device2) -> device1.compareTo(device2));
 			ExecutorService es;
 			ArrayList<RandomAccessFile> rafList = new ArrayList<>();
 			for (int i = 0; i < numberOfThreads; i++) {
@@ -53,7 +52,7 @@ public class Input implements InputInterface {
 			for (int i = 0; i < numberOfThreads; i++) {
 				rafList.get(i).close();
 			}
-			return new ArrayList<DeviceInterface>(deviceList.values());
+			return deviceList;
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
