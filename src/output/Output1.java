@@ -27,6 +27,7 @@ public class Output1 implements Output1Interface {
 				writer.write(deviceIterator.next().toString());
 			}
 			writer.write("###\n");
+			writer.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);

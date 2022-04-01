@@ -13,15 +13,16 @@ import device.DeviceInterface;
 
 public class Input implements InputInterface {
 	private String filename;
-	private long numberOfCharsPerThread;
-	public static final int numberOfThreads = 4;
+	private double numberOfCharsPerThread;
+	public static final int totalNumberOfThreads = 4;
+	public static final long marginOfError = 200;
 	private static final int sizeOfChar = 1;
-	private static final int numberOfSplits = 1;
+	public static final int totalNumberOfSplits = 80;
 
 	public Input(String filename) {
 		try {
 			File file = new File(filename);
-			numberOfCharsPerThread = file.length() / (numberOfThreads * sizeOfChar * numberOfSplits);
+			numberOfCharsPerThread = (double) file.length() / (double) (sizeOfChar * totalNumberOfSplits);
 			this.filename = filename;
 
 		} catch (Exception e) {
@@ -36,20 +37,20 @@ public class Input implements InputInterface {
 			ConcurrentSkipListSet<DeviceInterface> deviceList = new ConcurrentSkipListSet<>((device1, device2) -> device1.compareTo(device2));
 			ExecutorService es;
 			ArrayList<RandomAccessFile> rafList = new ArrayList<>();
-			for (int i = 0; i < numberOfThreads; i++) {
+			for (int i = 0; i < totalNumberOfThreads; i++) {
 				rafList.add(new RandomAccessFile(filename, "r"));
 			}
 			es = Executors.newCachedThreadPool();
 
-			for (int i = 0; i < numberOfThreads; i++) {
+			for (int i = 0; i < totalNumberOfThreads; i++) {
 
-				InputThread inputThread = new InputThread(rafList.get(i), deviceList, numberOfCharsPerThread, i, numberOfCharsPerThread * numberOfThreads * sizeOfChar * numberOfSplits);
+				InputThread inputThread = new InputThread(rafList.get(i), deviceList, numberOfCharsPerThread, i);
 				es.execute(inputThread);
 			}
 			es.shutdown();
 			while (!es.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES))
 				;
-			for (int i = 0; i < numberOfThreads; i++) {
+			for (int i = 0; i < totalNumberOfThreads; i++) {
 				rafList.get(i).close();
 			}
 			return deviceList;

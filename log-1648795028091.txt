@@ -1,0 +1,32 @@
+Apr 01, 2022 1:37:08 PM log.Log info
+INFO: Starting task Initializing input(Getting file length)
+Apr 01, 2022 1:37:08 PM log.Log info
+INFO: Ending task Initializing input(Getting file length)
+Apr 01, 2022 1:37:08 PM log.Log info
+INFO: Task Initializing input(Getting file length) took 0.396s
+Apr 01, 2022 1:37:08 PM log.Log startLogger
+INFO: Starting
+Apr 01, 2022 1:37:16 PM log.Log info
+INFO: Size of input:15000000
+Apr 01, 2022 1:37:22 PM log.Log info
+INFO: VT pc, 80 splits
+Apr 01, 2022 1:37:22 PM log.Log info
+INFO: Starting task Reading input file
+Apr 01, 2022 1:39:28 PM log.Log info
+INFO: Ending task Reading input file
+Apr 01, 2022 1:39:29 PM log.Log info
+INFO: Task Reading input file took 127.593s
+Apr 01, 2022 1:39:29 PM log.Log info
+INFO: Starting task Printing task 1
+Apr 01, 2022 1:42:00 PM log.Log info
+INFO: Ending task Printing task 1
+Apr 01, 2022 1:42:00 PM log.Log info
+INFO: Task Printing task 1 took 150.323s
+Apr 01, 2022 1:42:00 PM log.Log info
+INFO: Starting task Printing to file task2
+Apr 01, 2022 1:47:42 PM log.Log info
+INFO: Ending task Printing to file task2
+Apr 01, 2022 1:47:44 PM log.Log info
+INFO: Task Printing to file task2 took 344.206s
+Apr 01, 2022 1:47:44 PM log.Log endLogger
+INFO: Stopping

@@ -1,0 +1,10 @@
+Apr 01, 2022 9:20:25 AM log.Log info
+INFO: Starting task Initializing input(Getting file length)
+Apr 01, 2022 9:20:25 AM log.Log info
+INFO: Ending task Initializing input(Getting file length)
+Apr 01, 2022 9:20:25 AM log.Log info
+INFO: Task Initializing input(Getting file length) took 0.462s
+Apr 01, 2022 9:20:25 AM log.Log startLogger
+INFO: Starting
+Apr 01, 2022 9:20:38 AM log.Log info
+INFO: Size of input:15000000

@@ -21,6 +21,7 @@ public class Output2 implements Output2Interface {
 	@Override
 	public void printTask2(ConcurrentSkipListSet<DeviceInterface> deviceList) {
 		try {
+			
 			Iterator<DeviceInterface> deviceIterator = deviceList.descendingIterator();
 			while (deviceIterator.hasNext()) {
 				DeviceInterface device = deviceIterator.next();
@@ -28,6 +29,7 @@ public class Output2 implements Output2Interface {
 				writer.write(device.toString());
 			}
 			writer.write("###\n");
+			writer.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);

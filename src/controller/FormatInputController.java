@@ -40,7 +40,7 @@ public class FormatInputController {
 		input = new Input(inputFilename);
 		endTask("Initializing input(Getting file length)");
 		try {
-			this.writer = new BufferedWriter(new FileWriter(outputFileName));
+			this.writer = new BufferedWriter(new FileWriter(outputFileName), 32768);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);

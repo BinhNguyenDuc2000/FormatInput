@@ -1,0 +1,32 @@
+Apr 01, 2022 2:26:24 PM log.Log info
+INFO: Starting task Initializing input(Getting file length)
+Apr 01, 2022 2:26:24 PM log.Log info
+INFO: Ending task Initializing input(Getting file length)
+Apr 01, 2022 2:26:24 PM log.Log info
+INFO: Task Initializing input(Getting file length) took 0.091s
+Apr 01, 2022 2:26:24 PM log.Log startLogger
+INFO: Starting
+Apr 01, 2022 2:26:29 PM log.Log info
+INFO: Size of input:10000000
+Apr 01, 2022 2:26:37 PM log.Log info
+INFO: 80 splits 32768 buffer
+Apr 01, 2022 2:26:37 PM log.Log info
+INFO: Starting task Reading input file
+Apr 01, 2022 2:27:00 PM log.Log info
+INFO: Ending task Reading input file
+Apr 01, 2022 2:27:00 PM log.Log info
+INFO: Task Reading input file took 22.695s
+Apr 01, 2022 2:27:00 PM log.Log info
+INFO: Starting task Printing task 1
+Apr 01, 2022 2:27:08 PM log.Log info
+INFO: Ending task Printing task 1
+Apr 01, 2022 2:27:08 PM log.Log info
+INFO: Task Printing task 1 took 7.874s
+Apr 01, 2022 2:27:08 PM log.Log info
+INFO: Starting task Printing to file task2
+Apr 01, 2022 2:27:55 PM log.Log info
+INFO: Ending task Printing to file task2
+Apr 01, 2022 2:27:55 PM log.Log info
+INFO: Task Printing to file task2 took 46.988s
+Apr 01, 2022 2:27:55 PM log.Log endLogger
+INFO: Stopping

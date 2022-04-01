@@ -12,22 +12,20 @@ public class InputThread implements Runnable {
 
 	private RandomAccessFile reader;
 	private ConcurrentSkipListSet<DeviceInterface> deviceListSet;
-	private long numberOfCharsPerThread;
+	private double numberOfCharsPerThread;
 	private int numberOfThread;
 	private int numberOfSplits;
-	private long length;
 //	public static final int numberOfThreadsLimit = 4;
 //	private Semaphore semaphore = new Semaphore(InputThread.numberOfThreadsLimit);
 
 	private String line;
 
 	public InputThread(RandomAccessFile reader, ConcurrentSkipListSet<DeviceInterface> deviceListSet,
-			long numberOfCharsPerThread, int numberOfThread, long length) {
+			double numberOfCharsPerThread, int numberOfThread) {
 		this.reader = reader;
 		this.deviceListSet = deviceListSet;
 		this.numberOfCharsPerThread = numberOfCharsPerThread;
 		this.numberOfThread = numberOfThread;
-		this.length = length;
 		this.numberOfSplits = 0;
 	}
 
@@ -36,11 +34,12 @@ public class InputThread implements Runnable {
 
 		try {
 //			semaphore.acquire();
-			for (; numberOfSplits * numberOfCharsPerThread * Input.numberOfThreads < length; numberOfSplits++) {
-
+			
+			for (; numberOfSplits < Input.totalNumberOfSplits/Input.totalNumberOfThreads; numberOfSplits++) {
 				if (numberOfThread > 0 || numberOfSplits > 0) {
-					reader.seek(numberOfCharsPerThread * numberOfThread
-							+ numberOfSplits * numberOfCharsPerThread * Input.numberOfThreads);
+					reader.seek((long) (numberOfCharsPerThread * (double)numberOfThread
+							+ (double) numberOfSplits * numberOfCharsPerThread * (double)Input.totalNumberOfThreads));
+
 					while (true) {
 						int c = reader.read();
 						if (c == -1 || c == 0) {
@@ -54,18 +53,20 @@ public class InputThread implements Runnable {
 				}
 
 				FileReader fr = new FileReader(reader.getFD());
-				BufferedReader bufferedReader = new BufferedReader(fr);
+				BufferedReader bufferedReader = new BufferedReader(fr, 32768);
 
-				for (long i = 0; i < numberOfCharsPerThread;) {
+				for (Double i = 0.0; i <= numberOfCharsPerThread + Input.marginOfError;) {
 					line = bufferedReader.readLine();
-					if (line == null)
+					if (line == null) {
 						break;
+					}
 
 					i += line.length();
 					DeviceInterface device = ParserInterface.parseString(line);
 					deviceListSet.add(device);
 				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
