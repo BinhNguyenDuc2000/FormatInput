@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import controller.FormatInputController;
 import input.consumer.InputConsumer;
 import input.producer.InputProducer;
 
@@ -34,8 +35,8 @@ public class Input implements InputInterface {
 			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
 			BufferedWriter writerList[] = new BufferedWriter[range];
 			for (int i=0; i<range; i++) {
-				dataQueueList.add(new ArrayBlockingQueue<String>(100));
-				writerList[i] = new BufferedWriter(new FileWriter("MiddleOutput/MiddleOutput" + i + ".txt"));
+				dataQueueList.add(new ArrayBlockingQueue<String>(10000));
+				writerList[i] = new BufferedWriter(new FileWriter("MiddleOutput/MiddleOutput" + i + ".txt"), 8192 * 10);
 			}
 			InputProducer producer = new InputProducer(dataQueueList, reader);
 			ExecutorService executorService = Executors.newFixedThreadPool(11);
@@ -46,7 +47,7 @@ public class Input implements InputInterface {
 			}
 			executorService.shutdown();
 			while (!executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES));
-			
+			FormatInputController.log.info("Input1 consumers finished");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);

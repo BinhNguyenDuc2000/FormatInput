@@ -33,11 +33,11 @@ public class Output2 implements Output2Interface {
 			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
 			BufferedReader readerList[] = new BufferedReader[range];
 			for (int i=range-1; i > -1; i--) {
-				dataQueueList.add(new ArrayBlockingQueue<String>(100));
-				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"));
+				dataQueueList.add(new ArrayBlockingQueue<String>(10000));
+				readerList[range-i-1] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"), 8192*4);
 			}
 			ExecutorService executorService = Executors.newFixedThreadPool(11);
-			for (int i=range-1; i > -1; i--) {
+			for (int i=0; i < range; i++) {
 				executorService.execute(new Output2Producer(dataQueueList.get(i), readerList[i]));
 			}
 			Output2Consumer consumer = new Output2Consumer(dataQueueList, writer);

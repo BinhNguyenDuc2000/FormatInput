@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 
+import controller.FormatInputController;
+
 public class InputProducer implements Runnable {
     private final ArrayList<BlockingQueue<String>> dataQueueList;    
     private BufferedReader reader;
@@ -27,7 +29,6 @@ public class InputProducer implements Runnable {
 				if (message != null) {
 					int index = message.charAt(message.length()-1) - 48;
 					dataQueueList.get(index).put(message);
-					Thread.sleep(10);
 				}
 				else {
 					for (int index=0; index<dataQueueList.size();index++) {
@@ -44,6 +45,7 @@ public class InputProducer implements Runnable {
         
         try {
 			reader.close();
+			FormatInputController.log.info("Input1 producer finished");
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);

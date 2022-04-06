@@ -33,8 +33,8 @@ public class Output1 implements Output1Interface {
 			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
 			BufferedReader readerList[] = new BufferedReader[range];
 			for (int i=0; i<range; i++) {
-				dataQueueList.add(new ArrayBlockingQueue<String>(100));
-				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"));
+				dataQueueList.add(new ArrayBlockingQueue<String>(10000));
+				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"), 8192*4);
 			}
 			ExecutorService executorService = Executors.newFixedThreadPool(11);
 			for (int i=0; i<range; i++) {

@@ -99,7 +99,7 @@ public class FormatInputController {
 
 	public static void main(String[] args) {
 		try {
-			FormatInputController controller = new FormatInputController("Input/input.txt", "Output/output1.txt", 10);
+			FormatInputController controller = new FormatInputController("Input/input.txt", "Output/output.txt", 10);
 			controller.start();
 			controller.task1();
 			controller.task2();

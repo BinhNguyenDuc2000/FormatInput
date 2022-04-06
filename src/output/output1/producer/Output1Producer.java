@@ -25,7 +25,6 @@ public class Output1Producer implements Runnable{
 				message = reader.readLine();
 				if (message != null) {
 					dataQueue.put(message);
-					Thread.sleep(10);
 				}
 				else {
 					dataQueue.put("end");
