@@ -1,1 +1,10 @@
 /faker/
+/controller/
+/device/
+/input/
+/output/
+/middle_output/
+/data_queue/
+/producer/
+/consumer.class
+/consumer/

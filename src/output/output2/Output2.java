@@ -1,9 +1,8 @@
-package input;
+package output.output2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -11,46 +10,44 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import input.consumer.InputConsumer;
-import input.producer.InputProducer;
+import output.output2.consumer.Output2Consumer;
+import output.output2.producer.Output2Producer;
 
-public class Input implements InputInterface {
-	private BufferedReader reader;
+public class Output2 implements Output2Interface {
+	private BufferedWriter writer;
 	private int range;
 
-	public Input(String filename, int range) {
+	public Output2(BufferedWriter writer, int range) {
 		try {
-			reader = new BufferedReader(new FileReader(filename));
+			this.writer = writer;
 			this.range = range;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
+			System.exit(1);
 		}
 	}
 	
 	@Override
-	public void readAll() {
+	public void printTask2() {
 		try {
 			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
-			BufferedWriter writerList[] = new BufferedWriter[range];
-			for (int i=0; i<range; i++) {
+			BufferedReader readerList[] = new BufferedReader[range];
+			for (int i=range-1; i > -1; i--) {
 				dataQueueList.add(new ArrayBlockingQueue<String>(100));
-				writerList[i] = new BufferedWriter(new FileWriter("MiddleOutput/MiddleOutput" + i + ".txt"));
+				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"));
 			}
-			InputProducer producer = new InputProducer(dataQueueList, reader);
 			ExecutorService executorService = Executors.newFixedThreadPool(11);
-			executorService.execute(producer);
-			
-			for (int i=0; i<range; i++) {
-				executorService.execute(new InputConsumer(dataQueueList.get(i), writerList[i]));
+			for (int i=range-1; i > -1; i--) {
+				executorService.execute(new Output2Producer(dataQueueList.get(i), readerList[i]));
 			}
+			Output2Consumer consumer = new Output2Consumer(dataQueueList, writer);
+			executorService.execute(consumer);
 			executorService.shutdown();
 			while (!executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES));
-			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
-		}
-	}
+			System.exit(1);
+		} 
 
+	}
 }

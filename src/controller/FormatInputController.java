@@ -4,18 +4,16 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.swing.JOptionPane;
 
-import device.DeviceInterface;
 import input.Input;
 import input.InputInterface;
 import log.Log;
-import output.Output1;
-import output.Output1Interface;
-import output.Output2;
-import output.Output2Interface;
+import output.output1.Output1;
+import output.output1.Output1Interface;
+import output.output2.Output2;
+import output.output2.Output2Interface;
 
 /**
  * Controlling the flow of tasks.
@@ -25,19 +23,19 @@ import output.Output2Interface;
 
 public class FormatInputController {
 
-	private Log log;
+	public static final Log log = new Log();
+	private int range;
 	private Timestamp startTime;
 	private Timestamp stopTime;
 	private InputInterface input;
 	private BufferedWriter writer;
 	private Output1Interface output1;
 	private Output2Interface output2;
-	private ConcurrentSkipListSet<DeviceInterface> deviceList;
 	
-	public FormatInputController(String inputFilename, String outputFileName) {
-		log = new Log();
+	public FormatInputController(String inputFilename, String outputFileName, int range) {
 		startTask("Initializing input(Getting file length)");
-		input = new Input(inputFilename);
+		this.range = range;
+		input = new Input(inputFilename, range);
 		endTask("Initializing input(Getting file length)");
 		try {
 			this.writer = new BufferedWriter(new FileWriter(outputFileName), 32768);
@@ -82,32 +80,26 @@ public class FormatInputController {
 		
 		// Reading input file
 		startTask("Reading input file");
-		deviceList = input.readAll();
+		input.readAll();
 		endTask("Reading input file");
 		
-		// Sorting device list
-//		startTask("Sorting device list");
-//		log.info("Sorting device list");
-//		deviceList.sort((device1, device2) -> device1.compareTo(device2));
-//		endTask("Sorting device list");
-		
 		startTask("Printing task 1");
-		output1 = new Output1(writer);
-		output1.printTask1(deviceList);
+		output1 = new Output1(writer, range);
+		output1.printTask1();
 		endTask("Printing task 1");
 	}
 	
 	public void task2() {
 		
 		startTask("Printing to file task2");
-		output2 = new Output2(writer);
-		output2.printTask2(deviceList);
+		output2 = new Output2(writer, range);
+		output2.printTask2();
 		endTask("Printing to file task2");
 	}
 
 	public static void main(String[] args) {
 		try {
-			FormatInputController controller = new FormatInputController("Input/input1.txt", "Output/output1.txt");
+			FormatInputController controller = new FormatInputController("Input/input.txt", "Output/output1.txt", 10);
 			controller.start();
 			controller.task1();
 			controller.task2();
