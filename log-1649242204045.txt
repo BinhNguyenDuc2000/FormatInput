@@ -1,0 +1,36 @@
+Apr 06, 2022 5:50:04 PM log.Log info
+INFO: Starting task Initializing input(Getting file length)
+Apr 06, 2022 5:50:04 PM log.Log info
+INFO: Ending task Initializing input(Getting file length)
+Apr 06, 2022 5:50:04 PM log.Log info
+INFO: Task Initializing input(Getting file length) took 0.085s
+Apr 06, 2022 5:50:04 PM log.Log startLogger
+INFO: Starting
+Apr 06, 2022 5:50:16 PM log.Log info
+INFO: Size of input:50000000
+Apr 06, 2022 5:50:44 PM log.Log info
+INFO: Increasing queue limit
+Apr 06, 2022 5:50:44 PM log.Log info
+INFO: Starting task Reading input file
+Apr 06, 2022 5:53:53 PM log.Log info
+INFO: Input1 producer finished
+Apr 06, 2022 5:53:53 PM log.Log info
+INFO: Input1 consumers finished
+Apr 06, 2022 5:53:53 PM log.Log info
+INFO: Ending task Reading input file
+Apr 06, 2022 5:53:53 PM log.Log info
+INFO: Task Reading input file took 188.588s
+Apr 06, 2022 5:53:53 PM log.Log info
+INFO: Starting task Printing task 1
+Apr 06, 2022 5:57:08 PM log.Log info
+INFO: Ending task Printing task 1
+Apr 06, 2022 5:57:08 PM log.Log info
+INFO: Task Printing task 1 took 195.741s
+Apr 06, 2022 5:57:08 PM log.Log info
+INFO: Starting task Printing to file task2
+Apr 06, 2022 6:00:24 PM log.Log info
+INFO: Ending task Printing to file task2
+Apr 06, 2022 6:00:24 PM log.Log info
+INFO: Task Printing to file task2 took 195.761s
+Apr 06, 2022 6:00:24 PM log.Log endLogger
+INFO: Stopping
