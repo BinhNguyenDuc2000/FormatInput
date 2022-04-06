@@ -3,7 +3,6 @@ package output.output1;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -30,18 +29,14 @@ public class Output1 implements Output1Interface {
 	@Override
 	public void printTask1() {
 		try {
-			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
+			BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(10000);
 			BufferedReader readerList[] = new BufferedReader[range];
 			for (int i=0; i<range; i++) {
-				dataQueueList.add(new ArrayBlockingQueue<String>(10000));
 				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"), 8192*4);
 			}
 			ExecutorService executorService = Executors.newFixedThreadPool(11);
-			for (int i=0; i<range; i++) {
-				executorService.execute(new Output1Producer(dataQueueList.get(i), readerList[i]));
-			}
-			Output1Consumer consumer = new Output1Consumer(dataQueueList, writer);
-			executorService.execute(consumer);
+			executorService.execute(new Output1Producer(dataQueue, readerList));
+			executorService.execute(new Output1Consumer(dataQueue, writer));
 			executorService.shutdown();
 			while (!executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES));
 		} catch (Exception e) {

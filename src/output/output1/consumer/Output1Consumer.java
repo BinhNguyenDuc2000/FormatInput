@@ -1,16 +1,14 @@
 package output.output1.consumer;
 
 import java.io.BufferedWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.BlockingQueue;
 
 public class Output1Consumer implements Runnable {
-	private final ArrayList<BlockingQueue<String>> dataQueueList;
+	private final BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
 
-	public Output1Consumer(ArrayList<BlockingQueue<String>> dataQueueList, BufferedWriter writer) {
-		this.dataQueueList = dataQueueList;
+	public Output1Consumer(BlockingQueue<String> dataQueueList, BufferedWriter writer) {
+		this.dataQueue = dataQueueList;
 		this.writer = writer;
 	}
 
@@ -21,24 +19,17 @@ public class Output1Consumer implements Runnable {
 
 	public void consume() {
 		try {
-
-			Iterator<BlockingQueue<String>> iterator = dataQueueList.iterator();
-			while (iterator.hasNext()) {
-				String message;
-				BlockingQueue<String> dataQueue = iterator.next();
-				
-				boolean running = true;
-				while (running) {
-					message = dataQueue.take();
-					if (message.compareTo("end") != 0) {
-						writer.write(message + "\n");
-					} else {
-						running = false;
-					}
-
+			String message;
+			boolean running = true;
+			while (running) {
+				message = dataQueue.take();
+				if (message.compareTo("end") != 0) {
+					writer.write(message + "\n");
+				} else {
+					running = false;
 				}
-
 			}
+
 			writer.write("####\n");
 
 		} catch (Exception e) {

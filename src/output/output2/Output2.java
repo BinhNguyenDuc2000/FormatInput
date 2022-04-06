@@ -3,7 +3,6 @@ package output.output2;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -30,18 +29,14 @@ public class Output2 implements Output2Interface {
 	@Override
 	public void printTask2() {
 		try {
-			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
+			BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(10000);
 			BufferedReader readerList[] = new BufferedReader[range];
-			for (int i=range-1; i > -1; i--) {
-				dataQueueList.add(new ArrayBlockingQueue<String>(10000));
-				readerList[range-i-1] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"), 8192*4);
+			for (int i=0; i<range; i++) {
+				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + (range-i-1) + ".txt"), 8192*4);
 			}
 			ExecutorService executorService = Executors.newFixedThreadPool(11);
-			for (int i=0; i < range; i++) {
-				executorService.execute(new Output2Producer(dataQueueList.get(i), readerList[i]));
-			}
-			Output2Consumer consumer = new Output2Consumer(dataQueueList, writer);
-			executorService.execute(consumer);
+			executorService.execute(new Output2Producer(dataQueue, readerList));
+			executorService.execute(new Output2Consumer(dataQueue, writer));
 			executorService.shutdown();
 			while (!executorService.awaitTermination(Long.MAX_VALUE, TimeUnit.MINUTES));
 		} catch (Exception e) {

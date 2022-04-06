@@ -1,16 +1,14 @@
 package output.output2.consumer;
 
 import java.io.BufferedWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.BlockingQueue;
 
 public class Output2Consumer implements Runnable{
-	private final ArrayList<BlockingQueue<String>> dataQueueList;
+	private final BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
 
-	public Output2Consumer(ArrayList<BlockingQueue<String>> dataQueueList, BufferedWriter writer) {
-		this.dataQueueList = dataQueueList;
+	public Output2Consumer(BlockingQueue<String> dataQueue, BufferedWriter writer) {
+		this.dataQueue = dataQueue;
 		this.writer = writer;
 	}
 
@@ -21,26 +19,18 @@ public class Output2Consumer implements Runnable{
 
 	public void consume() {
 		try {
-
-			Iterator<BlockingQueue<String>> iterator = dataQueueList.iterator();
-			while (iterator.hasNext()) {
-				String message;
-				BlockingQueue<String> dataQueue = iterator.next();
-				
-				boolean running = true;
-				while (running) {
-					message = dataQueue.take();
-					if (message.compareTo("end") != 0) {
-						String parts[] = message.split(",");
-						parts[2] = standardizedOwner(parts[2]);
-						message = String.join(",", parts);
-						writer.write(message + "\n");
-					} else {
-						running = false;
-					}
-
+			String message;
+			boolean running = true;
+			while (running) {
+				message = dataQueue.take();
+				if (message.compareTo("end") != 0) {
+					String parts[] = message.split(",");
+					parts[2] = standardizedOwner(parts[2]);
+					message = String.join(",", parts);
+					writer.write(message + "\n");
+				} else {
+					running = false;
 				}
-
 			}
 			writer.write("####\n");
 
