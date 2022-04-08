@@ -33,10 +33,10 @@ public class FormatInputController {
 	private Output2Interface output2;
 	
 	public FormatInputController(String inputFilename, String outputFileName, int range) {
-		startTask("Initializing input(Getting file length)");
+		startTask("Initializing input(Getting file length and setting up readers)");
 		this.range = range;
 		input = new Input(inputFilename, range);
-		endTask("Initializing input(Getting file length)");
+		endTask("Initializing input(Getting file length and setting up readers)");
 		try {
 			this.writer = new BufferedWriter(new FileWriter(outputFileName), 32768);
 		} catch (IOException e) {
