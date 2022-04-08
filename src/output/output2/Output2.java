@@ -29,7 +29,7 @@ public class Output2 implements Output2Interface {
 	@Override
 	public void printTask2() {
 		try {
-			BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(10000);
+			BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(1000);
 			BufferedReader readerList[] = new BufferedReader[range];
 			for (int i=0; i<range; i++) {
 				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + (range-i-1) + ".txt"), 8192*4);

@@ -35,7 +35,7 @@ public class Input implements InputInterface {
 			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
 			BufferedWriter writerList[] = new BufferedWriter[range];
 			for (int i=0; i<range; i++) {
-				dataQueueList.add(new ArrayBlockingQueue<String>(10000));
+				dataQueueList.add(new ArrayBlockingQueue<String>(1000));
 				writerList[i] = new BufferedWriter(new FileWriter("MiddleOutput/MiddleOutput" + i + ".txt"), 8192 * 10);
 			}
 			InputProducer producer = new InputProducer(dataQueueList, reader);
