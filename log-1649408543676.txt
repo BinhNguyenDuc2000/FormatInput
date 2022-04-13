@@ -1,0 +1,2 @@
+Apr 08, 2022 4:02:24 PM log.Log info
+INFO: Starting task Initializing input(Getting file length)
