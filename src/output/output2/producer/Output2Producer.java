@@ -2,7 +2,11 @@ package output.output2.producer;
 
 import java.io.BufferedReader;
 import java.util.concurrent.BlockingQueue;
-
+/**
+ * Producer will read records from Middle Output files and add it to the Blocking Queue.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
 public class Output2Producer implements Runnable{
 	private final BlockingQueue<String> dataQueue;    
     private BufferedReader[] readerList;

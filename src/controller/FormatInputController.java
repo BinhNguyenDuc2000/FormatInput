@@ -8,16 +8,13 @@ import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 import input.Input;
-import input.InputInterface;
 import log.Log;
 import output.output1.Output1;
-import output.output1.Output1Interface;
 import output.output2.Output2;
-import output.output2.Output2Interface;
 
 /**
  * Controlling the flow of tasks.
- * @author ThinkPad
+ * @author Binh.NguyenDuc2000@gmail.com
  *
  */
 
@@ -27,11 +24,17 @@ public class FormatInputController {
 	private int range;
 	private Timestamp startTime;
 	private Timestamp stopTime;
-	private InputInterface input;
+	private Input input;
 	private BufferedWriter writer;
-	private Output1Interface output1;
-	private Output2Interface output2;
+	private Output1 output1;
+	private Output2 output2;
 	
+	/**
+	 * Initializing Input and Writer.
+	 * @param inputFilename the input file name.
+	 * @param outputFileName the output file name.
+	 * @param range the range of warranty year.
+	 */
 	public FormatInputController(String inputFilename, String outputFileName, int range) {
 		startTask("Initializing input(Getting file length and setting up readers)");
 		this.range = range;
@@ -46,6 +49,9 @@ public class FormatInputController {
 		
 	}
 	
+	/**
+	 * Starting the logger.
+	 */
 	public void start() {
 		log.startLogger();
 		log.info("Size of input:" + JOptionPane.showInputDialog("Input size:"));
@@ -53,6 +59,9 @@ public class FormatInputController {
 		log.info(message);
 	}
 	
+	/**
+	 * Ending the logger and writer.
+	 */
 	public void end() {
 		log.endLogger();
 		try {
@@ -63,10 +72,19 @@ public class FormatInputController {
 		}
 	}
 	
+	/**
+	 * Starting a task with a message and a timer.
+	 * @param message task description.
+	 */
 	public void startTask(String message) {
 		startTime = new Timestamp(System.currentTimeMillis());
 		log.info("Starting task " + message);
 	}
+	
+	/**
+	 * Ending a task with a message and total time took.
+	 * @param message task description.
+	 */
 	
 	public void endTask(String message) {
 		log.info("Ending task "+ message);
@@ -75,7 +93,9 @@ public class FormatInputController {
 		log.info("Task " + message + " took " + runtime + "s");
 	}
 	
-	
+	/**
+	 * Executing task 1 which involves reading input file and printing sorter records list.
+	 */
 	public void task1() {	
 		
 		// Reading input file
@@ -89,6 +109,9 @@ public class FormatInputController {
 		endTask("Printing task 1");
 	}
 	
+	/**
+	 * Starting task 2 which involves standardizing records owner name and print the reverse records list.
+	 */
 	public void task2() {
 		
 		startTask("Printing to file task2");
@@ -99,7 +122,7 @@ public class FormatInputController {
 
 	public static void main(String[] args) {
 		try {
-			FormatInputController controller = new FormatInputController("Input/input.txt", "Output/output.txt", 10);
+			FormatInputController controller = new FormatInputController("Input/input.txt", "Output/output.txt", 100);
 			controller.start();
 			controller.task1();
 			controller.task2();

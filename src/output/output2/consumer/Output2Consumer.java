@@ -3,6 +3,11 @@ package output.output2.consumer;
 import java.io.BufferedWriter;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Consumer will take records from Blocking Queue, standardize the Owner name and print it to final Output file.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
 public class Output2Consumer implements Runnable{
 	private final BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;

@@ -7,6 +7,11 @@ import java.util.concurrent.BlockingQueue;
 
 import input.Input;
 
+/**
+ * The Input file reading thread and adding it to the Blocking Queues List.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
 public class InputProducer implements Runnable {
     private final ArrayList<BlockingQueue<String>> dataQueueList;    
     private BufferedReader reader;
@@ -20,14 +25,23 @@ public class InputProducer implements Runnable {
         produce();
     }
     
+    /**
+     * Read through the input file and add records to corresponding Blocking Queue
+     * 
+     * The thread stops when reads to end of file or enough bytes are read and the reader is close.
+     */
     public void produce() {
     	long readChars = 0;
-        for ( ;readChars<Input.numberOfCharsPerThread; ) {
+        for ( ;readChars<Input.NUMBER_OF_CHARS_PER_THREAD; ) {
             String message;
 			try {
 				message = reader.readLine();
 				if (message != null) {
-					int index = message.charAt(message.length()-1) - 48;
+					int strLen = message.length();
+					int index = message.charAt(strLen-1) - 48;
+					if (message.charAt(strLen-2)!=',') {
+						index += (message.charAt(strLen-2) - 48) * 10;
+					}
 					readChars += message.length() + 2;
 					dataQueueList.get(index).put(message);
 				}

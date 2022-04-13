@@ -6,12 +6,21 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
+/**
+ * Logging running processes.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
 public class Log {
 	private Logger logger;
 	private FileHandler fileHandler;
 	private SimpleFormatter formatter;
 	
+	/**
+	 * Initializing logging file.
+	 * 
+	 * Log file name is decided by current time.
+	 */
 	public Log() {
 		try {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -38,6 +47,10 @@ public class Log {
 		logger.info("Stopping");
 	}
 	
+	/**
+	 * Logging a specific message.
+	 * @param message The message to be logged.
+	 */
 	public void info(String message) {
 		logger.info(message);
 	}

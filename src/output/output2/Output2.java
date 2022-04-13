@@ -11,11 +11,20 @@ import java.util.concurrent.TimeUnit;
 
 import output.output2.consumer.Output2Consumer;
 import output.output2.producer.Output2Producer;
-
-public class Output2 implements Output2Interface {
+/**
+ * Reading from Middle Output Files, standardizing owner name and printing it to the final Output file.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
+public class Output2 {
 	private BufferedWriter writer;
 	private int range;
 
+	/**
+	 * Initializing the writer and range.
+	 * @param writer the writer used to print to final Output file.
+	 * @param range the range of warranty year.
+	 */
 	public Output2(BufferedWriter writer, int range) {
 		try {
 			this.writer = writer;
@@ -26,7 +35,13 @@ public class Output2 implements Output2Interface {
 		}
 	}
 	
-	@Override
+	/**
+	 * Executing printing task 2 to file.
+	 * 
+	 * The process is split into 2 threads: Consumer and Producer. 
+	 * - Producer will read records from Middle Output files and add it to the Blocking Queue.
+	 * - Consumer will take records from Blocking Queue, standardize the Owner name and print it to final Output file.
+	 */
 	public void printTask2() {
 		try {
 			BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(1000);

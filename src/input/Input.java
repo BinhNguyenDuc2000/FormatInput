@@ -17,16 +17,33 @@ import controller.FormatInputController;
 import input.consumer.InputConsumer;
 import input.producer.InputProducer;
 
-public class Input implements InputInterface {
+/**
+ * Reading input file and splitting it to multiple files
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
+
+public class Input {
 	private ArrayList<BufferedReader> readerList = new ArrayList<>();
 	private int range;
-	public static final long numberOfCharsPerThread = 10000000l;
-	private static final int sizeOfChar = 1;
-
+	/**
+	 * The number of chars each input producer thread reads.
+	 */
+	public static final long NUMBER_OF_CHARS_PER_THREAD = 10000000l;
+	/**
+	 * The size of a char
+	 */
+	private static final int SIZE_OF_CHAR = 1;
+	
+	/**
+	 * Initializing the Readers list.
+	 * @param filename the input file name.
+	 * @param range the range of warranty year.
+	 */
 	public Input(String filename, int range) {
 		try {
 			File file = new File(filename);
-			long totalNumberOfChars = file.length() / sizeOfChar;
+			long totalNumberOfChars = file.length() / SIZE_OF_CHAR;
 			long totalNumberOfReadChars = 0l;
 
 			for (int i = 0; totalNumberOfReadChars < totalNumberOfChars; i++) {
@@ -51,7 +68,7 @@ public class Input implements InputInterface {
 				}
 
 				readerList.add(new BufferedReader(new FileReader(raf.getFD())));
-				totalNumberOfReadChars += numberOfCharsPerThread;
+				totalNumberOfReadChars += NUMBER_OF_CHARS_PER_THREAD;
 			}
 			this.range = range;
 		} catch (Exception e) {
@@ -59,8 +76,13 @@ public class Input implements InputInterface {
 			System.exit(0);
 		}
 	}
-
-	@Override
+	
+	/**
+	 * Start to read file and splitting it to multiple smaller files based on warranty year.
+	 *
+	 * The reading processes is split into multiple producer threads, each reading a certain amount bytes decided by NUMBER_OF_CHARS_PER_THREAD constant.
+	 * Read data is then used by consumer threads through multiple blocking queue and written to middle output files.
+	 */
 	public void readAll() {
 		try {
 			// Setting up consumers

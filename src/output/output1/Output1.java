@@ -12,10 +12,20 @@ import java.util.concurrent.TimeUnit;
 import output.output1.consumer.Output1Consumer;
 import output.output1.producer.Output1Producer;
 
-public class Output1 implements Output1Interface {
+/**
+ * Reading from Middle Output Files and printing it to the final Output file.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
+public class Output1 {
 	private int range;
 	private BufferedWriter writer;
 
+	/**
+	 * Initializing the writer and range.
+	 * @param writer the writer used to print to final Output file.
+	 * @param range the range of warranty year.
+	 */
 	public Output1(BufferedWriter writer, int range) {
 		try {
 			this.writer = writer;
@@ -26,7 +36,13 @@ public class Output1 implements Output1Interface {
 		}
 	}
 
-	@Override
+	/**
+	 * Executing printing task 1 to file.
+	 * 
+	 * The process is split into 2 threads: Consumer and Producer. 
+	 * - Producer will read records from Middle Output files and add it to the Blocking Queue.
+	 * - Consumer will take records from Blocking Queue and print it to final Output file.
+	 */
 	public void printTask1() {
 		try {
 			BlockingQueue<String> dataQueue = new ArrayBlockingQueue<String>(1000);

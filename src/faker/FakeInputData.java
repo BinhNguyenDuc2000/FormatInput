@@ -27,7 +27,11 @@ public class FakeInputData {
 	private int huaweiCounter;
 	private int mscCounter;
 	private int epcCounter;
-
+	
+	/**
+	 * Initializing FakeInputData instance.
+	 * @param filename the input file name.
+	 */
 	public FakeInputData(String filename) {
 		try {
 			writer = new BufferedWriter(new FileWriter(filename));
@@ -95,7 +99,7 @@ public class FakeInputData {
 	}
 	
 	public String randomWarrantyYear() {
-		return String.valueOf(Math.abs(random.nextInt())%10);
+		return String.valueOf(Math.abs(random.nextInt())%100);
 	}
 	
 	public void close() {
@@ -109,9 +113,8 @@ public class FakeInputData {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		FakeInputData faker = new FakeInputData("Input/input.txt");
-		for (int i=0; i<50; i++)
+		for (int i=0; i<1000; i++)
 			faker.appendLine();
 		faker.close();
 		System.out.print("Done");

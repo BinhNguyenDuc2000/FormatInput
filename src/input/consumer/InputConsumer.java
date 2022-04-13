@@ -3,6 +3,11 @@ package input.consumer;
 import java.io.BufferedWriter;
 import java.util.concurrent.BlockingQueue;
 
+/**
+ * Taking records data from Blocking queue to print to Middle Output file.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
 public class InputConsumer implements Runnable {
 	private final BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
@@ -17,6 +22,9 @@ public class InputConsumer implements Runnable {
 		consume();
 	}
 
+	/**
+	 * Continue to read from blocking queue, stopping when 'end' message is received.
+	 */
 	public void consume() {
 		try {
 			while (true) {
@@ -32,7 +40,6 @@ public class InputConsumer implements Runnable {
 			writer.close();
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		} 

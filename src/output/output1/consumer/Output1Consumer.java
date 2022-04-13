@@ -2,7 +2,11 @@ package output.output1.consumer;
 
 import java.io.BufferedWriter;
 import java.util.concurrent.BlockingQueue;
-
+/**
+ * Consumer will take records from Blocking Queue and print it to final Output file.
+ * @author Binh.NguyenDuc2000@gmail.com
+ *
+ */
 public class Output1Consumer implements Runnable {
 	private final BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
@@ -33,7 +37,6 @@ public class Output1Consumer implements Runnable {
 			writer.write("####\n");
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}
