@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 public class Output2Producer implements Runnable{
-	private final BlockingQueue<String> dataQueue;    
+	private BlockingQueue<String> dataQueue;    
     private BufferedReader[] readerList;
     public Output2Producer(BlockingQueue<String> dataQueue, BufferedReader[] readerList) {
         this.dataQueue = dataQueue;
@@ -20,7 +20,7 @@ public class Output2Producer implements Runnable{
         produce();
     }
     
-    public void produce() {
+    private void produce() {
     	String message;
 		for (int i = 0; i < readerList.length; i++) {
 			try {

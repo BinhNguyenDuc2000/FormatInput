@@ -9,5 +9,6 @@ output.output1.consumer
 output.output1.producer
 output.output2
 output.output2.consumer
+output.output2.middle_queue
 output.output2.producer
 tester

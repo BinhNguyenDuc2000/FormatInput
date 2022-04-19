@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 public class Output1Producer implements Runnable {
-	private final BlockingQueue<String> dataQueue;
+	private BlockingQueue<String> dataQueue;
 	private BufferedReader[] readerList;
 
 	public Output1Producer(BlockingQueue<String> dataQueue, BufferedReader[] readerList) {
@@ -22,7 +22,7 @@ public class Output1Producer implements Runnable {
 		produce();
 	}
 
-	public void produce() {
+	private void produce() {
 		{
 			String message;
 			for (int i = 0; i < readerList.length; i++) {

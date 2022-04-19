@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 public class InputConsumer implements Runnable {
-	private final BlockingQueue<String> dataQueue;
+	private BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
 
 	public InputConsumer(BlockingQueue<String> dataQueue, BufferedWriter writer) {
@@ -25,7 +25,7 @@ public class InputConsumer implements Runnable {
 	/**
 	 * Continue to read from blocking queue, stopping when 'end' message is received.
 	 */
-	public void consume() {
+	private void consume() {
 		try {
 			while (true) {
 				String message;

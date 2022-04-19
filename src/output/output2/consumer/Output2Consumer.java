@@ -9,7 +9,7 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 public class Output2Consumer implements Runnable{
-	private final BlockingQueue<String> dataQueue;
+	private BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
 
 	public Output2Consumer(BlockingQueue<String> dataQueue, BufferedWriter writer) {
@@ -22,7 +22,7 @@ public class Output2Consumer implements Runnable{
 		consume();
 	}
 
-	public void consume() {
+	private void consume() {
 		try {
 			String message;
 			boolean running = true;

@@ -13,7 +13,7 @@ import input.Input;
  *
  */
 public class InputProducer implements Runnable {
-    private final ArrayList<BlockingQueue<String>> dataQueueList;    
+    private ArrayList<BlockingQueue<String>> dataQueueList;    
     private BufferedReader reader;
     public InputProducer(ArrayList<BlockingQueue<String>> dataQueueList, BufferedReader reader) {
         this.dataQueueList = dataQueueList;
@@ -30,7 +30,7 @@ public class InputProducer implements Runnable {
      * 
      * The thread stops when reads to end of file or enough bytes are read and the reader is close.
      */
-    public void produce() {
+    private void produce() {
     	long readChars = 0;
         for ( ;readChars<Input.NUMBER_OF_CHARS_PER_THREAD; ) {
             String message;

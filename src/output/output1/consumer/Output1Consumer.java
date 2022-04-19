@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 public class Output1Consumer implements Runnable {
-	private final BlockingQueue<String> dataQueue;
+	private BlockingQueue<String> dataQueue;
 	private BufferedWriter writer;
 
 	public Output1Consumer(BlockingQueue<String> dataQueueList, BufferedWriter writer) {
@@ -21,7 +21,7 @@ public class Output1Consumer implements Runnable {
 		consume();
 	}
 
-	public void consume() {
+	private void consume() {
 		try {
 			String message;
 			boolean running = true;
