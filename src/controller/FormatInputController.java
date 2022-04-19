@@ -26,6 +26,7 @@ public class FormatInputController {
 	private Timestamp stopTime;
 	private Input input;
 	private BufferedWriter writer;
+	private static final int WRITER_BUFFER_SIZE = 8192 * 10;
 	private Output1 output1;
 	private Output2 output2;
 	
@@ -41,7 +42,7 @@ public class FormatInputController {
 		input = new Input(inputFilename, range);
 		endTask("Initializing input(Getting file length and setting up readers)");
 		try {
-			this.writer = new BufferedWriter(new FileWriter(outputFileName), 32768);
+			this.writer = new BufferedWriter(new FileWriter(outputFileName), WRITER_BUFFER_SIZE);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -122,7 +123,7 @@ public class FormatInputController {
 
 	public static void main(String[] args) {
 		try {
-			FormatInputController controller = new FormatInputController("Input/input.txt", "Output/output.txt", 100);
+			FormatInputController controller = new FormatInputController("Input/input1.txt", "Output/output1.txt", 100);
 			controller.start();
 			controller.task1();
 			controller.task2();

@@ -29,9 +29,6 @@ public class Output2Consumer implements Runnable{
 			while (running) {
 				message = dataQueue.take();
 				if (message.compareTo("end") != 0) {
-					String parts[] = message.split(",");
-					parts[2] = standardizedOwner(parts[2]);
-					message = String.join(",", parts);
 					writer.write(message + "\n");
 				} else {
 					running = false;
@@ -46,23 +43,5 @@ public class Output2Consumer implements Runnable{
 		}
 	}
 	
-	public String standardizedOwner(String owner) {
-		owner = owner.trim();
-
-		StringBuilder temp = new StringBuilder(String.valueOf(Character.toUpperCase(owner.charAt(0))));
-		for (int i=1; i < owner.length(); i++) {
-			if (owner.charAt(i-1) == ' ') {
-				if (Character.isAlphabetic(owner.charAt(i)))
-					temp.append(Character.toUpperCase(owner.charAt(i)));
-			}
-			else {
-				if (Character.isAlphabetic(owner.charAt(i)))
-					temp.append(Character.toLowerCase(owner.charAt(i)));
-				else {
-					temp.append(' ');
-				}
-			}
-		}
-		return temp.toString();
-	}
+	
 }

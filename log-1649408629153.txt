@@ -1,2 +1,0 @@
-Apr 08, 2022 4:03:49 PM log.Log info
-INFO: Starting task Initializing input(Getting file length and setting up readers)

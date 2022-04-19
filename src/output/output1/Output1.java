@@ -50,7 +50,7 @@ public class Output1 {
 			for (int i=0; i<range; i++) {
 				readerList[i] = new BufferedReader(new FileReader("MiddleOutput/MiddleOutput" + i + ".txt"), 8192*4);
 			}
-			ExecutorService executorService = Executors.newFixedThreadPool(11);
+			ExecutorService executorService = Executors.newFixedThreadPool(2);
 			executorService.execute(new Output1Producer(dataQueue, readerList));
 			executorService.execute(new Output1Consumer(dataQueue, writer));
 			executorService.shutdown();

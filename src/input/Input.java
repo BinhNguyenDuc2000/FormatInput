@@ -88,7 +88,7 @@ public class Input {
 			// Setting up consumers
 			ArrayList<BlockingQueue<String>> dataQueueList = new ArrayList<>();
 			BufferedWriter writerList[] = new BufferedWriter[range];
-			ExecutorService consumerExecutorService = Executors.newFixedThreadPool(10);
+			ExecutorService consumerExecutorService = Executors.newFixedThreadPool(range);
 			for (int i = 0; i < range; i++) {
 				dataQueueList.add(new ArrayBlockingQueue<String>(100000));
 				writerList[i] = new BufferedWriter(new FileWriter("MiddleOutput/MiddleOutput" + i + ".txt"), 8192 * 10);
